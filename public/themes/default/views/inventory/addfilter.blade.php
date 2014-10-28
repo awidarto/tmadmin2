@@ -80,6 +80,7 @@
 .modal.large .modal-body{
     max-height: 800px;
     height: 500px;
+    overflow: auto;
 }
 
 </style>
