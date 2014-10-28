@@ -26,7 +26,7 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myPrintModalLabel">Print Selected Codes</span></h3>
     </div>
-    <div class="modal-body" >
+    <div class="modal-body" style="overflow:auto;" >
         <h6>Print options</h6>
         <div style="border-bottom:thin solid #ccc;" class="row clearfix">
             <div class="col-md-2">
