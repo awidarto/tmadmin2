@@ -63,9 +63,9 @@
         title="Dialog Title">Your browser does not suppr</iframe>
 
     </div>
-    <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-    <button class="btn btn-primary" id="do-print">Print</button>
+    <div class="modal-footer" style="z-index:20000;">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+        <button class="btn btn-primary" id="do-print">Print</button>
     </div>
 </div>
 
