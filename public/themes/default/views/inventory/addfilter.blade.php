@@ -57,11 +57,12 @@
         <input type="hidden" value="" id="session_name" />
         <input type="hidden" value="" id="label_id" />
 
+        <div style="height:100%;width:100%;">
+            <iframe id="label_frame" name="label_frame" width="100%" height="90%"
+            marginWidth="0" marginHeight="0" frameBorder="0" scrolling="auto"
+            title="Dialog Title">Your browser does not suppr</iframe>
 
-        <iframe id="label_frame" name="label_frame" width="100%" height="90%"
-        marginWidth="0" marginHeight="0" frameBorder="0" scrolling="auto"
-        title="Dialog Title">Your browser does not suppr</iframe>
-
+        </div>
     </div>
     <div class="modal-footer" style="z-index:20000;">
         <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
