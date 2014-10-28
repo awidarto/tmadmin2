@@ -114,7 +114,7 @@
         <table>
             <tr>
                 <td colspan="2" style="text-align:center">
-                    {{ $pd['itemDescription']}}
+                    {{ isset($pd['itemDescription'])?$pd['itemDescription']:'';}}
                 </td>
             </tr>
             <tr>
