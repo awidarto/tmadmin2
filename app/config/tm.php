@@ -12,8 +12,6 @@ return array(
         'Medium Gallery'=>'Medium Gallery',
         'Large Gallery'=>'Large Gallery',
         ),
-
-
-
+    'batch_year_format'=>'y',
 
 );

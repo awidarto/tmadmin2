@@ -19,7 +19,7 @@ class Commerce{
         $productDetail = Product::find($data['id'])->toArray();
 
         // year and month used fro batchnumber
-        $year = date('Y', time());
+        $year = date(Config::get('tm.batch_year_format'), time());
         $month = date('m',time());
 
 
