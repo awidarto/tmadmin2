@@ -143,7 +143,7 @@
             <tr>
                 <td colspan="2" style="text-align:center">
                     @if($code_type == 'qr')
-                        <img src="{{ URL::to('qr/'.base64_encode($l['_id']))}}" alt="{{ $l['_id'] }}" style="width:50px;height:auto;" />
+                        <img src="{{ URL::to('qr/'.base64_encode($l['_id']))}}" alt="{{ $l['_id'] }}" style="width:45px;height:auto;" />
                     @else
                         <span class="barcodebar" >{{$l['_id']}}</span>
                     @endif
