@@ -15,5 +15,3 @@
     {{ HTML::style('css/gridtable.css') }}
 
     {{ HTML::style('css/daterangepicker-bs3.css') }}
-
-    {{ HTML::style('code128/fonts.css') }}

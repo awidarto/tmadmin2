@@ -25,6 +25,9 @@
     {{ HTML::style('css/bootstrap-modal.css') }}
     {{ HTML::style('css/flick/jquery-ui-1.9.2.custom.min.css') }}
     @include('layout.css')
+
+    {{-- HTML::style('code128/stylesheet.css') --}}
+
     <!-- /page styles -->
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -41,6 +44,7 @@
 
     {{ HTML::script('js/blueimp-gallery.min.js') }}
     {{ HTML::script('js/jquery.blueimp-gallery.min.js') }}
+
 
     <script type="text/javascript">
         var base = '{{ URL::to('/') }}/';
