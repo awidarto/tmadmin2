@@ -26,18 +26,20 @@
     {{ HTML::style('css/flick/jquery-ui-1.9.2.custom.min.css') }}
     @include('layout.css')
 
-    @font-face {
-        font-family: 'code_128regular';
-        src: url('{{ URL::to('code128') }}/code128-webfont.eot');
-        src: url('{{ URL::to('code128') }}/code128-webfont.eot?#iefix') format('embedded-opentype'),
-             url('{{ URL::to('code128') }}/code128-webfont.woff2') format('woff2'),
-             url('{{ URL::to('code128') }}/code128-webfont.woff') format('woff'),
-             url('{{ URL::to('code128') }}/code128-webfont.ttf') format('truetype'),
-             url('{{ URL::to('code128') }}/code128-webfont.svg#code_128regular') format('svg');
-        font-weight: normal;
-        font-style: normal;
+    <style type="text/css">
+        @font-face {
+            font-family: 'code_128regular';
+            src: url('{{ URL::to('code128') }}/code128-webfont.eot');
+            src: url('{{ URL::to('code128') }}/code128-webfont.eot?#iefix') format('embedded-opentype'),
+                 url('{{ URL::to('code128') }}/code128-webfont.woff2') format('woff2'),
+                 url('{{ URL::to('code128') }}/code128-webfont.woff') format('woff'),
+                 url('{{ URL::to('code128') }}/code128-webfont.ttf') format('truetype'),
+                 url('{{ URL::to('code128') }}/code128-webfont.svg#code_128regular') format('svg');
+            font-weight: normal;
+            font-style: normal;
 
-    }
+        }
+    </style>
 
     <!-- /page styles -->
 
