@@ -117,7 +117,7 @@
 
     .barcodebar{
         font-family: 'barcode128';
-        font-size: 20px;
+        font-size: 24px;
     }
 
     .barcodetxt{
