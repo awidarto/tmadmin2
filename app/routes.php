@@ -305,7 +305,7 @@ Route::get('barcode/dl/{txt}',function($txt){
 Route::get('barcode/{txt}',function($txt){
     $barcode = new Barcode();
     $barcode->make($txt,'code128',60, 'horizontal' ,true);
-    return $barcode->render('jpg',$txt);
+    return $barcode->render('png',$txt);
 });
 
 Route::get('media',function(){
