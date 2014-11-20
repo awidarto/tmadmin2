@@ -115,11 +115,14 @@
                 url("{{  URL::to('code128/fonts/code128.woff'); }}") format("woff");
     }
 
-    .barcodetxt{
+    .barcodebar{
         font-family: 'barcode128';
         font-size: 20px;
     }
 
+    .barcodetxt{
+        font-size: 8px;
+    }
 
 </style>
 </head>
@@ -137,6 +140,7 @@
             </tr>
             <tr>
                 <td colspan="2" style="text-align:center">
+                    <span class="barcodebar" >{{$l['_id']}}</span>
                     <span class="barcodetxt" >{{$l['_id']}}</span>
                 </td>
             </tr>
