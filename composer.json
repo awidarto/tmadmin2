@@ -12,19 +12,19 @@
         "intervention/imagecache": "dev-master",
         "intervention/helper": "dev-master",
         "intervention/validation": "dev-master",
-        "maatwebsite/excel": "1.*",
+        "maatwebsite/excel": "~1.2.1",
         "alexwhitman/view-themes": "1.2.*",
         "mj/breadcrumb": "dev-master",
         "knplabs/knp-snappy": "*",
         "barryvdh/laravel-snappy": "dev-master",
         "flynsarmy/db-blade-compiler": "1.*",
+        "simplesoftwareio/simple-qrcode": "1.1.*",
         "pingpong/menus": "1.0.*"
 	},
 	"autoload": {
 		"classmap": [
 			"app/commands",
 			"app/controllers",
-            "app/controllers/api",
 			"app/models",
 			"app/database/migrations",
 			"app/database/seeds",
