@@ -141,6 +141,7 @@
             <tr>
                 <td colspan="2" style="text-align:center">
                     <span class="barcodebar" >{{$l['_id']}}</span>
+                    <br />
                     <span class="barcodetxt" >{{$l['_id']}}</span>
                 </td>
             </tr>
