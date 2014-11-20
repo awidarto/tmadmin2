@@ -111,8 +111,7 @@
 
     @font-face {
         font-family: "barcode128";
-        src: url("{{  URL::to('code128/fonts/code128.ttf'); }}") format("truetype"),
-                url("{{  URL::to('code128/fonts/code128.woff'); }}") format("woff");
+        src: url("{{  URL::to('code128/fonts/code128.ttf'); }}") format("truetype");
     }
 
     .barcodebar{
