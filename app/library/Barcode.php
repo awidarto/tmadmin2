@@ -121,7 +121,8 @@ class Barcode{
 		}
 
         if($showtxt){
-            imagefilledrectangle( $image , $img_width / 8 , $img_height - 20 , ($img_width / 8)*6 , $img_height , $white );
+            //imagefilledrectangle( $image , $img_width / 8 , $img_height - 20 , ($img_width / 8)*6 , $img_height , $white );
+            imagefilledrectangle( $image , 0 , $img_height - 20 , $img_width , $img_height , $white );
             imagestring( $image,4,($img_width / 8) + 5 ,$img_height - 15,$text,$black );
         }
 
