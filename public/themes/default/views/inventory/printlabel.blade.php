@@ -103,6 +103,24 @@
         display: block;
     }
 
+
+    @font-face {
+        font-family: IDAutomationHC39M;
+        src: url(http://www.idautomation.com/barcode-fonts/woff-web-fonts/IDAutomationHC39M.woff);
+    }
+
+    @font-face {
+        font-family: "barcode128";
+        src: url("{{  URL::to('code128/fonts/code128.ttf'); }}") format("truetype"),
+                url("{{  URL::to('code128/fonts/code128.woff'); }}") format("woff");
+    }
+
+    .barcodetxt{
+        font-family: 'barcode128';
+        font-size: 20px;
+    }
+
+
 </style>
 </head>
 <body>
@@ -119,7 +137,7 @@
             </tr>
             <tr>
                 <td colspan="2" style="text-align:center">
-                    <img src="{{ URL::to('barcode/'.urlencode($l['_id']) ) }}" class="barcode" alt="{{ $l['_id'] }}" />
+                    <span class="barcodetxt" >{{$l['_id']}}</span>
                 </td>
             </tr>
             <tr>
