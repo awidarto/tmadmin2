@@ -24,21 +24,11 @@
 }
 
 @font-face {
-    font-family: 'Code128';
-    src: url('../fonts/Code128/code128.eot');
-    src: local('Code128'), url('../fonts/Code128/code128.woff') format('woff'), url('../fonts/Code128/code128.ttf') format('truetype'), url('../fonts/Code128/code128.svg') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-
-@font-face {
   font-family: 'Kaushan Script';
   font-style: normal;
   font-weight: 400;
   src: local('Kaushan Script'), local('KaushanScript-Regular'), url(../fonts/Kaushan_Script/qx1LSqts-NtiKcLw4N03ILDH3ri20rYH10B2w3wbVeU.woff) format('woff');
 }
-
 
 @font-face {
   font-family: 'Open Sans';
