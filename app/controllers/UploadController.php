@@ -430,5 +430,22 @@ class UploadController extends Controller {
 
     }
 
+    private function isAudio($mime){
+        return preg_match('/^audio/',$mime);
+    }
+
+    private function isVideo($mime){
+        return preg_match('/^video/',$mime);
+    }
+
+    private function isImage($mime){
+        return preg_match('/^image/',$mime);
+    }
+
+    private function isPdf($mime){
+        return preg_match('/pdf/',$mime);
+    }
+
+
 
 }
