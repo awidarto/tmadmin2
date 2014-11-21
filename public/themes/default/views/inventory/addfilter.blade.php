@@ -47,7 +47,7 @@
             </div>
             <div class="col-md-2">
                 {{ Former::text('font_size','Font size')->value('8')->id('font_size')->class('form-control input-sm') }}
-                {{ Former::select('code_type','Code type')->id('code_type')->options(array('barcode'=>'Barcode','qr'=>'QR') )}}
+                {{ Former::select('code_type','Code type')->id('code_type')->options(array('qr'=>'QR','barcode'=>'Barcode') )}}
             </div>
             <div class="col-md-2">
                 <button id="label_default" class="form-control" >make default</button>
