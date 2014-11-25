@@ -1285,7 +1285,7 @@ div.payform h3{
             $('#current_session').val(active_id);
 
             oTable.draw();
-            alert("Session id : " + current_trx + " deleted");
+            alert("Session id : " + current_trx + " finalized");
 
         }
 
