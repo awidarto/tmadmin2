@@ -484,7 +484,7 @@ class PosController extends AdminController {
     public function getPrint($session_id)
     {
         $trx = Transaction::where('sessionId',$session_id)->get()->toArray();
-        $pay = Payment::where('sessionId',$session_id)->get()->toArray();
+        $pay = Payment::where('sessionId',$session_id)->first()->toArray();
 
         $tab = array();
         foreach($trx as $t){
@@ -508,7 +508,7 @@ class PosController extends AdminController {
             $gt += $v['tagprice'];
         }
 
-        $tab_data[] = array('','','',Ks::idr($gt));
+        $tab_data[] = array('','','',array('value'=>Ks::idr($gt), 'attr'=>'class="right"'));
 
         $header = array(
             'things to buy',
@@ -522,11 +522,17 @@ class PosController extends AdminController {
         $tr_tab = $t->build();
 
         $viewmodel = Template::where('type','invoice')->where('status','active')->first();
+        return View::make('print.invoice')
+                        ->with('transtab', $tr_tab)
+                        ->with('trx', $trx)
+                        ->with('pay',$pay);
+        /*
         return DbView::make($viewmodel)
                         ->field('body')
                         ->with('transtab', $tr_tab)
                         ->with('trx', $trx)
                         ->with('pay',$pay);
+                        */
     }
 
     public function postCancel()
@@ -593,6 +599,15 @@ class PosController extends AdminController {
             $trx->cash_change = $in['cash_change'];
             $trx->lastUpdate = new MongoDate();
 
+            if(isset($trx->invoice_number) && $trx->invoice_number != '' ){
+
+            }else{
+                $prefix = 'TM-'.date('Y',time());
+                $infix = date('m',time());
+                $invnum = Prefs::GetInvoiceSequence($prefix, 5, $infix);
+                $trx->invoice_number = $invnum;
+            }
+
             $payment = $trx->toArray();
 
             $trx->save();
@@ -655,7 +670,7 @@ class PosController extends AdminController {
                 $sales->save();
             }
 
-            return Response::json(array( 'result'=>'OK' ));
+            return Response::json(array( 'result'=>'OK', 'status'=>$in['status'] ));
 
     }
 

@@ -692,7 +692,11 @@ class SalesreportController extends AdminController {
             $gt += $v['total'];
         }
 
+        $gt += $gt * 0.1;
+
         $totalform = Former::hidden('totalprice',$gt);
+
+        $tab_data[] = array('','',array('value'=>'PPN 10%', 'attr'=>'class="right"'),array('value'=>Ks::idr($gt * 0.1), 'attr'=>'class="right"'));
 
         $tab_data[] = array('','',$totalform,array('value'=>Ks::idr($gt), 'attr'=>'class="right"'));
 

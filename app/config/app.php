@@ -117,7 +117,8 @@ return array(
         'AlexWhitman\ViewThemes\ViewThemesServiceProvider',
         'Barryvdh\Snappy\ServiceProvider',
         'Flynsarmy\DbBladeCompiler\DbBladeCompilerServiceProvider',
-        'SimpleSoftwareIO\QrCode\QrCodeServiceProvider'
+        'SimpleSoftwareIO\QrCode\QrCodeServiceProvider',
+        'Creitive\Breadcrumbs\BreadcrumbsServiceProvider',
 
 	),
 
@@ -186,7 +187,7 @@ return array(
         'View'            => 'Illuminate\Support\Facades\View',
 
         'Former'          => 'Former\Facades\Former',
-        'Breadcrumb'      => 'Noherczeg\Breadcrumb\Facades\Breadcrumb',
+        'Breadcrumbs'     => 'Creitive\Breadcrumbs\Facades\Breadcrumbs',
         'Date'            => 'Intervention\Helper\Facades\Date',
         'String'          => 'Intervention\Helper\Facades\String',
         'Image'           => 'Intervention\Image\Facades\Image',

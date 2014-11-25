@@ -188,6 +188,29 @@ class Prefs {
 
     }
 
+    public static function GetInvoiceSequence($prefix, $pad = 5, $infix = '', $suffix = ''){
+
+        $seq = DB::collection('invoicesequences')->raw();
+
+        $new_id = $seq->findAndModify(
+                array(
+                    'prefix'=>$prefix
+                    ),
+                array('$inc'=>array('sequence'=>1)),
+                null,
+                array(
+                    'new' => true,
+                    'upsert'=>true
+                )
+            );
+
+
+        $invseq = $prefix.$infix.str_pad($new_id['sequence'], $pad, '0', STR_PAD_LEFT).$suffix;
+
+        return $invseq;
+
+    }
+
     public static function ExtractProductCategory($selection = true)
     {
         $category = Product::distinct('category')->get()->toArray();

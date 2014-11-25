@@ -306,7 +306,7 @@ div.payform h3{
     var current_del_id = 0;
     var current_print_id = 0;
 
-
+    var current_final = 0;
 
     function toggle_visibility(id) {
         $('#' + id).toggle();
@@ -582,6 +582,8 @@ div.payform h3{
 
         */
 
+
+
         $('#btn-cancel').on('click',function(){
             var current_trx = $('#current_session').val();
             var answer = confirm("Are you sure you want to cancel this session ?");
@@ -688,6 +690,7 @@ div.payform h3{
         });
 
         $('#finalize-trans').on('click',function(){
+
             var current_trx = $('#current_session').val();
 
             var by_name = $('#name').val();
@@ -722,6 +725,10 @@ div.payform h3{
                     if(data.result == 'OK'){
                         $('#print-window').attr('src','{{ URL::to('pos/print') }}/' + current_trx );
                         $('#print-modal').modal('show');
+
+                        current_final = 1;
+                        clearSession();
+                        console.log( 'is final ' + current_final);
                     }
                 },'json');
 
@@ -834,6 +841,10 @@ div.payform h3{
             $('#cash-change').val('');
 
             $('#pay-modal').modal();
+        });
+
+        $('#pay-modal').on('hidden.bs.modal',function(e){
+            console.log( 'final ' + current_final);
         });
 
         function collectPayData(){
@@ -1233,6 +1244,49 @@ div.payform h3{
             var dd  = indate.getDate().toString();
 
             return (dd[1]?dd:"0"+dd[0]) + '-' + (mm[1]?mm:"0"+mm[0]) + '-' + yyyy;
+        }
+
+        function clearSession(){
+            var current_trx = $('#current_session').val();
+            var sessions = $('.session-select');
+            console.log(sessions);
+            var lbl = 0;
+            var is_next = false;
+            var next_active = true;
+            sessions.each(function(idx, el){
+                console.log(el.id);
+                if(el.id == current_trx){
+                    lbl = parseInt( $(el).html() );
+                    $(el).remove();
+                    is_next = true;
+                    $('#session-list button').removeClass('active');
+                }else{
+                    if(is_next == true){
+                        $(el).html(lbl);
+                        if(next_active == true){
+                            $(el).addClass('active');
+                            next_active = false;
+                        }
+                        lbl++;
+                    }
+                }
+            });
+
+            var active_session = $('.session-select .active');
+
+            console.log(active_session.size());
+
+            if(active_session.size() <= 0){
+                $('.session-select:first').addClass('active');
+            }
+
+            var active_id = $('button.session-select.active').attr('id');
+
+            $('#current_session').val(active_id);
+
+            oTable.draw();
+            alert("Session id : " + current_trx + " deleted");
+
         }
 
 
