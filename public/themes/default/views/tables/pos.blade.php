@@ -870,6 +870,12 @@ div.payform h3{
             console.log(receiptObj);
         });
 
+        $('table.dataTable').on('keyup',function(ev){
+            if(ev.keyCode == '13'){
+                console.log(ev.target.value);
+            }
+        });
+
         $('table.dataTable').click(function(e){
 
             if ($(e.target).is('.del_unit')) {
