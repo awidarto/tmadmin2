@@ -32,7 +32,7 @@ class InventoryController extends AdminController {
             //array('Photos',array('search'=>false,'sort'=>false)),
             array('SKU',array('search'=>true,'sort'=>true)),
             array('Unit Id',array('search'=>true,'sort'=>true)),
-            array('Code',array('search'=>true,'sort'=>true, 'attr'=>array('class'=>'span2'))),
+            array('Desc.',array('search'=>true,'sort'=>true, 'attr'=>array('class'=>'span2'))),
             array('Picture',array('search'=>true,'sort'=>true ,'attr'=>array('class'=>'span2'))),
             array('Outlet',array('search'=>true,'sort'=>true, 'select'=>Prefs::getOutlet()->OutletToSelection('name','name') )),
             array('Status',array('search'=>true,'sort'=>true,'select'=>Config::get('shoplite.inventory_status_select') )),
@@ -62,7 +62,7 @@ class InventoryController extends AdminController {
             //array('SKU',array('kind'=>'text','query'=>'like','pos'=>'both','callback'=>'namePic','show'=>true)),
             array('SKU',array('kind'=>'text','query'=>'like','pos'=>'both','attr'=>array('class'=>'expander'),'show'=>true)),
             array('_id',array('kind'=>'text','query'=>'like','pos'=>'after','callback'=>'shortunit','attr'=>array('class'=>'expander'),'show'=>true)),
-            array('SKU',array('kind'=>'text','callback'=>'dispBar', 'query'=>'like','pos'=>'both','show'=>true)),
+            array('productDetail.itemDescription',array('kind'=>'text','callback'=>'dispBar', 'query'=>'like','pos'=>'both','show'=>true)),
             array('SKU',array('kind'=>'text', 'callback'=>'namePic', 'query'=>'like','pos'=>'both','show'=>true)),
             array('outletName',array('kind'=>'text','query'=>'like','pos'=>'both','show'=>true )),
             array('status',array('kind'=>'text','query'=>'like','pos'=>'both','show'=>true)),
@@ -76,6 +76,8 @@ class InventoryController extends AdminController {
         if($outletFilter != ''){
             $this->additional_query = array('outletName'=>$outletFilter);
         }
+
+        $this->additional_query = array('status'=>array('$ne'=>'deleted'));
 
         $this->place_action ='none';
 
@@ -527,7 +529,7 @@ class InventoryController extends AdminController {
         $code = base64_encode($code);
         $display = HTML::image(URL::to('qr/'.$code), $data['SKU'], array('id' => $data['_id'], 'style'=>'width:50px;height:auto;' ));
         $display = '<a href="'.URL::to('barcode/dl/'.$code).'">'.$display.'</a>';
-        return $display.'<br />'.$data['SKU'];
+        return $data['productDetail.itemDescription'].'<br />'.$display.'<br />'.$data['SKU'];
     }
 
     public function shortunit($data){

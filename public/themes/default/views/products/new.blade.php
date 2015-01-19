@@ -17,7 +17,7 @@
         {{-- Former::select('categoryLink','Category')->options(Prefs::ExtractProductCategory()) --}}
         {{ Former::text('series','Series') }}
         {{ Former::text('itemDescription','Description') }}
-        {{ Former::text('itemGroup','Item Group')->help('for compound product only') }}
+        {{-- Former::text('itemGroup','Item Group')->help('for compound product only') --}}
         {{ Former::text('priceRegular','Regular Price')->class('col-md-4') }}
         {{ Former::text('priceDiscount','Discount Price')->class('col-md-4') }}
         {{ Former::text('discFromDate','Disc. From')->class('span7 offset-2 eventdate')
@@ -35,18 +35,21 @@
 
         <div class="row-fluid form-vertical">
             <div class="col-md-4">
-                {{ Former::text('W','Width')->class('col-md-12')}}
+                {{ Former::text('W','Width')->class('form-control ')}}
             </div>
             <div class="col-md-4">
-                {{ Former::text('H','Height')->class('col-md-12') }}
+                {{ Former::text('H','Height')->class('form-control ') }}
             </div>
             <div class="col-md-4">
-                {{ Former::text('L','Length')->class('col-md-12') }}
+                {{ Former::text('L','Length')->class('form-control ') }}
             </div>
         </div>
         <div class="row-fluid form-vertical">
             <div class="col-md-4">
-                {{ Former::text('D','Diameter')->class('col-md-12')}}
+                {{ Former::text('Weight','Weight/Unit')->class('form-control')}}
+            </div>
+            <div class="col-md-4">
+                {{ Former::text('D','Diameter')->class('form-control')}}
             </div>
             <div class="col-md-4">
                 {{ Former::text('sizeDescription','Dimension Description') }}
@@ -83,7 +86,7 @@
                             <td>
                                 <input type="hidden" name="outlets[]"  value="{{ $o->_id }}">
                                 <input type="hidden" name="outletNames[]"  value="{{ $o->name }}">
-                                <input type="text" class="col-md-6" id="{{ $o->_id }}" name="addQty[]" value="" />
+                                <input type="text" class="col-md-6 form-control" id="{{ $o->_id }}" name="addQty[]" value="" />
                             </td>
                         </tr>
                     @endforeach

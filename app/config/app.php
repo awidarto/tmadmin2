@@ -119,6 +119,7 @@ return array(
         'Flynsarmy\DbBladeCompiler\DbBladeCompilerServiceProvider',
         'SimpleSoftwareIO\QrCode\QrCodeServiceProvider',
         'Creitive\Breadcrumbs\BreadcrumbsServiceProvider',
+        'Mattbrown\Laracurl\LaracurlServiceProvider'
 
 	),
 

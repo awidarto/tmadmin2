@@ -1,10 +1,10 @@
             <ul class="nav navbar-nav navbar-right hidden-xs">
+                {{--
                 <li class="hidden-xs">
                     <a href="profile.html">
                         {{ Auth::user()->fullname }}
                     </a>
                 </li>
-                {{--
                 <li class="notifications dropdown hidden-xs">
                     <a href="#" data-toggle="dropdown">
                         <i class="fa fa-bell"></i>
@@ -77,13 +77,14 @@
                 --}}
                 <li class="quickmenu mg-r-md">
                     <a href="#" data-toggle="dropdown">
-                        <img src="{{ URL::to('cameo')}}/img/avatar.jpg" class="avatar pull-left img-circle" alt="user" title="user">
+                        <i class="fa fa2x fa-user"></i>
                         <i class="caret mg-l-xs hidden-xs no-margin"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right mg-r-xs">
                         <li>
                             <a href="#">
                                 <div class="pd-t-sm">
+                                    <b>{{ Auth::user()->fullname }}</b><br />
                                     {{ Auth::user()->email }}
                                 </div>
                             </a>

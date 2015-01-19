@@ -84,7 +84,34 @@ Route::get('content/category', 'CategoryController@getIndex');
 Route::get('content/section', 'SectionController@getIndex');
 Route::get('content/menu', 'MenuController@getIndex');
 
+Route::get('jne/origin/{q}',function($q){
 
+    $url = Laracurl::buildUrl(Config::get('jne.base_url').'origin/key/'.$q,[]);
+    $response = Laracurl::post($url, ['username' =>Config::get('jne.username') ,'api_key'=>Config::get('jne.key')]);
+
+    print_r($response);
+});
+
+Route::get('jne/dest/{q}',function($q){
+    $url = Laracurl::buildUrl(Config::get('jne.base_url').'dest/key/'.$q,[]);
+    $response = Laracurl::post($url, ['username' =>Config::get('jne.username') ,'api_key'=>Config::get('jne.key')]);
+
+    print_r($response);
+});
+
+Route::get('jne/price/{from}/{thru}/{weight}',function($from, $thru, $weight){
+
+    $url = Laracurl::buildUrl(Config::get('jne.base_url').'origin/key/'.$q,[]);
+    $response = Laracurl::post($url, array(
+            'username' =>Config::get('jne.username') ,
+            'api_key'=>Config::get('jne.key'),
+            'from'=>$from,
+            'thru'=>$thru,
+            'weight'=>$weight )
+    );
+
+    print_r($response);
+});
 
 Route::get('regenerate',function(){
     $property = new Property();

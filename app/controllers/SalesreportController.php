@@ -30,6 +30,7 @@ class SalesreportController extends AdminController {
 
         $this->heads = array(
             array('Transaction Id',array('search'=>true,'sort'=>true)),
+            array('Status',array('search'=>true,'sort'=>true)),
             array('Outlet',array('search'=>true,'sort'=>true, 'select'=>Prefs::getOutlet()->OutletToSelection('name','name') )),
             array('Buyer',array('search'=>true,'sort'=>false)),
             array('Address',array('search'=>true,'sort'=>false ,'attr'=>array('class'=>''))),
@@ -61,7 +62,9 @@ class SalesreportController extends AdminController {
     {
 
         $this->fields = array(
+
             array('sessionId',array('kind'=>'text','query'=>'like','pos'=>'both','show'=>true)),
+            array('transactionstatus',array('kind'=>'text','query'=>'like','pos'=>'both','show'=>true)),
             array('outletName',array('kind'=>'text','query'=>'like','pos'=>'after','show'=>true)),
             array('buyer_name',array('kind'=>'text','query'=>'like','pos'=>'after','show'=>true)),
             array('buyer_address',array('kind'=>'text','query'=>'like','pos'=>'after','show'=>true)),

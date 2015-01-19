@@ -59,6 +59,9 @@
         </div>
         <div class="row">
             <div class="col-md-4">
+                {{ Former::text('Weight','Weight/Unit')->class('form-control')}}
+            </div>
+            <div class="col-md-4">
                 {{ Former::text('D','Diameter')->class('form-control')}}
             </div>
             <div class="col-md-4">
@@ -117,10 +120,10 @@
                             <td>
                                 <input type="hidden" name="outlets[]"  value="{{ $o->_id }}">
                                 <input type="hidden" name="outletNames[]"  value="{{ $o->name }}">
-                                <input type="text" class="col-md-10" id="{{ $o->_id }}" name="addQty[]" value="" />
+                                <input type="text" class="col-md-10 form-control" id="{{ $o->_id }}" name="addQty[]" value="" />
                             </td>
                             <td>
-                                <input type="text" class="col-md-10" id="{{ $o->_id }}" name="adjustQty[]" value="" />
+                                <input type="text" class="col-md-10 form-control" id="{{ $o->_id }}" name="adjustQty[]" value="" />
                             </td>
                         </tr>
                     @endforeach
