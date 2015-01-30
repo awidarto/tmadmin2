@@ -1,4 +1,4 @@
-@extends('layout.front')
+@extends('layout.frontform')
 
 
 @section('content')
@@ -6,7 +6,7 @@
 <h3>{{$title}}</h3>
 
 
-{{Former::open_for_files_horizontal($submit,'POST',array('class'=>'custom'))}}
+{{Former::open_for_files_vertical($submit,'POST',array('class'=>'custom'))}}
 
 {{ Former::hidden('id')->value($formdata['_id']) }}
 <div class="row">
@@ -22,12 +22,12 @@
         {{ Former::text('priceRegular','Regular Price')->class('form-control col-md-4') }}
         {{ Former::text('priceDiscount','Discount Price')->class('form-control col-md-4') }}
 
-        {{ Former::text('discFromDate','Disc. From')->class('form-control col-md-7 offset-2 eventdate')
+        {{ Former::text('discFromDate','Disc. From')->class('form-control eventdate')
             ->id('fromDate')
             //->data_format('dd-mm-yyyy')
             ->append('<i class="fa fa-th"></i>') }}
 
-        {{ Former::text('discToDate','Disc. Until')->class('form-control col-md-7 offset-2 eventdate')
+        {{ Former::text('discToDate','Disc. Until')->class('form-control eventdate')
             ->id('toDate')
             //->data_format('dd-mm-yyyy')
             ->append('<i class="fa fa-th"></i>') }}
