@@ -131,8 +131,6 @@
 <body>
 <div id="container">
 
-    {{ print_r($products)}}
-
 @foreach( $labels as $l )
     <?php $pd = $products[ $l['SKU'] ]; ?>
     <div class="label">
