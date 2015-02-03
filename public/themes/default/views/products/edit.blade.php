@@ -1,10 +1,9 @@
-@extends('layout.frontform')
+@extends('layout.front')
 
 
 @section('content')
 
 <h3>{{$title}}</h3>
-
 
 {{Former::open_for_files_vertical($submit,'POST',array('class'=>'custom'))}}
 
