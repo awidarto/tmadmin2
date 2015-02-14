@@ -217,23 +217,26 @@ Route::get('regeneratepic/{obj?}',function($obj = null){
                                     $urls = array();
 
                                     foreach($sizes as $k=>$v){
-                                        $sqcanvas = Image::canvas(($v['width'] + 10) ,($v['height'] + 10) , '#FFFFFF');
+
+                                        if( $v['width'] == $v['height']){
+                                            $sqcanvas = Image::canvas(($v['width'] + 10) ,($v['height'] + 10) , '#FFFFFF');
 
 
-                                        $thsrc = Image::make($destinationPath.'/'.$filename)
-                                            ->resize($v['width'],$v['height'], function ($constraint) {
-                                                $constraint->aspectRatio();
-                                            });
+                                            $thsrc = Image::make($destinationPath.'/'.$filename)
+                                                ->resize($v['width'],null, function ($constraint) {
+                                                    $constraint->aspectRatio();
+                                                });
 
-                                        $thumbnail = $sqcanvas->insert($thsrc, 'center')
-                                            ->save($destinationPath.'/'.$v['prefix'].$filename);
+                                            $thumbnail = $sqcanvas->insert($thsrc, 'center')
+                                                ->save($destinationPath.'/'.$v['prefix'].$filename);
 
-                                        /*
-                                        $thumbnail = Image::make($destinationPath.'/'.$filename)
-                                            ->fit($v['width'],$v['height'])
-                                            //->insert($sm_wm,0,0, 'bottom-right')
-                                            ->save($destinationPath.'/'.$v['prefix'].$filename);
-                                        */
+                                            }else{
+                                                $thumbnail = Image::make($destinationPath.'/'.$filename)
+                                                    ->fit($v['width'],$v['height'])
+                                                    //->insert($sm_wm,0,0, 'bottom-right')
+                                                    ->save($destinationPath.'/'.$v['prefix'].$filename);
+
+                                            }
                                     }
                                     /*
                                     $thumbnail = Image::make($destinationPath.'/'.$filename)
