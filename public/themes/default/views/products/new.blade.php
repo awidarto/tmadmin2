@@ -14,6 +14,8 @@
         {{ Former::select('status')->options(array('inactive'=>'Inactive','active'=>'Active'))->label('Status') }}
 
         {{ Former::select('categoryLink','Category')->options(Prefs::getProductCategory()->productCatToSelection('slug', 'title' )) }}
+        {{ Former::text('subCategory','Sub Category') }}
+
         {{-- Former::select('categoryLink','Category')->options(Prefs::ExtractProductCategory()) --}}
         {{ Former::text('series','Series') }}
         {{ Former::text('itemDescription','Description') }}

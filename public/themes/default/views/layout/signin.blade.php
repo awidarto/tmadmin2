@@ -33,11 +33,10 @@
         border: 1px solid #D8D8D8;
         border-bottom-width: 2px;
         border-top-width: 0;
-        background-color: #FFF;
         max-width: 350px;
         padding: 19px 29px 29px;
         margin: 0 auto 20px;
-        background-color: #fff;
+        background-color: #000;
         border: 1px solid #F5F5F5;
         -webkit-border-radius: 3px;
         -moz-border-radius: 3px;
