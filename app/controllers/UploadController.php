@@ -50,40 +50,66 @@ class UploadController extends Controller {
 
             $ps = Config::get('picture.sizes');
 
-            $sqcanvas = Image::canvas(($ps['thumbnail']['width'] + 10) ,($ps['thumbnail']['height'] + 10) , '#FFFFFF');
+
+            if($ps['thumbnail']['width'] == $ps['thumbnail']['height']){
+                $sqcanvas = Image::canvas(($ps['thumbnail']['width'] + 10) ,($ps['thumbnail']['height'] + 10) , '#FFFFFF');
 
 
-            $thsrc = Image::make($destinationPath.'/'.$filename)
-                ->resize($ps['thumbnail']['width'],$ps['thumbnail']['height'], function ($constraint) {
-                    $constraint->aspectRatio();
-                });
-                //->fit($ps['thumbnail']['width'],$ps['thumbnail']['height']);
-                //->insert($sm_wm,0,0, 'bottom-right')
+                $thsrc = Image::make($destinationPath.'/'.$filename)
+                    ->resize($ps['thumbnail']['width'],$ps['thumbnail']['height'], function ($constraint) {
+                        $constraint->aspectRatio();
+                    });
 
-            $thumbnail = $sqcanvas->insert($thsrc, 'center')
-                ->save($destinationPath.'/th_'.$filename);
+                $thumbnail = $sqcanvas->insert($thsrc, 'center')
+                    ->save($destinationPath.'/th_'.$filename);
 
-            $sqcanvas = Image::canvas(($ps['medium']['width'] + 10) ,($ps['medium']['height'] + 10) , '#FFFFFF');
+            }else{
+                $thumbnail = Image::make($destinationPath.'/'.$filename)
+                    ->fit($ps['thumbnail']['width'],$ps['thumbnail']['height'])
+                    //->insert($med_wm,0,0, 'bottom-right')
+                    ->save($destinationPath.'/th_'.$filename);
+
+            }
+
+            if($ps['medium']['width'] == $ps['medium']['height']){
+
+                $sqcanvas = Image::canvas(($ps['medium']['width'] + 10) ,($ps['medium']['height'] + 10) , '#FFFFFF');
 
 
-            $medsrc = Image::make($destinationPath.'/'.$filename)
-                ->resize($ps['medium']['width'],$ps['medium']['height'], function ($constraint) {
-                    $constraint->aspectRatio();
-                });
+                $medsrc = Image::make($destinationPath.'/'.$filename)
+                    ->resize($ps['medium']['width'],$ps['medium']['height'], function ($constraint) {
+                        $constraint->aspectRatio();
+                    });
 
-            $medium = $sqcanvas->insert($medsrc, 'center')
-                ->save($destinationPath.'/med_'.$filename);
-            /*
-            $medium = Image::make($destinationPath.'/'.$filename)
-                ->fit($ps['medium']['width'],$ps['medium']['height'])
-                //->insert($med_wm,0,0, 'bottom-right')
-                ->save($destinationPath.'/med_'.$filename);
-            */
+                $medium = $sqcanvas->insert($medsrc, 'center')
+                    ->save($destinationPath.'/med_'.$filename);
 
-            $large = Image::make($destinationPath.'/'.$filename)
-                ->fit($ps['large']['width'],$ps['large']['height'])
-                //->insert($large_wm, 'bottom-right',15,15)
-                ->save($destinationPath.'/lrg_'.$filename);
+            }else{
+                $medium = Image::make($destinationPath.'/'.$filename)
+                    ->fit($ps['medium']['width'],$ps['medium']['height'])
+                    ->save($destinationPath.'/med_'.$filename);
+
+            }
+
+            if($ps['large']['width'] == $ps['large']['height']){
+
+                $sqcanvas = Image::canvas(($ps['large']['width'] + 10) ,($ps['large']['height'] + 10) , '#FFFFFF');
+
+
+                $lrgsrc = Image::make($destinationPath.'/'.$filename)
+                    ->resize($ps['large']['width'],$ps['large']['height'], function ($constraint) {
+                        $constraint->aspectRatio();
+                    });
+
+                $large = $sqcanvas->insert($lrgsrc, 'center')
+                    ->save($destinationPath.'/med_'.$filename);
+
+            }else{
+                $large = Image::make($destinationPath.'/'.$filename)
+                    ->fit($ps['large']['width'],$ps['large']['height'])
+                    //->insert($large_wm, 'bottom-right',15,15)
+                    ->save($destinationPath.'/lrg_'.$filename);
+            }
 
             $full = Image::make($destinationPath.'/'.$filename)
                 ->insert($large_wm, 'bottom-right',15,15)

@@ -21,7 +21,7 @@ Route::controller('outlet', 'OutletController');
 Route::controller('user', 'UserController');
 Route::controller('agent', 'AgentController');
 Route::controller('buyer', 'BuyerController');
-Route::controller('report', 'ReportController');
+//Route::controller('report', 'ReportController');
 Route::controller('showcase', 'ShowcaseController');
 Route::controller('pages', 'PagesController');
 Route::controller('posts', 'PostsController');
@@ -72,6 +72,9 @@ Route::controller('ajax', 'AjaxController');
 Route::controller('home', 'HomeController');
 Route::controller('homeslide', 'HomeslideController');
 Route::controller('header', 'HeaderController');
+
+Route::controller('access', 'AccessController');
+Route::controller('activity', 'ActivityController');
 
 //Route::get('/', 'ProductsController@getIndex');
 //Route::get('/', 'PosController@getIndex');

@@ -10,6 +10,7 @@
 <div class="row-fluid">
     <div class="col-md-6">
         {{ Former::text('name','Outlet Name') }}
+        {{ Former::text('code','Outlet Code / Initial') }}
         {{ Former::text('slug','Permalink')->id('permalink') }}
         {{ Former::text('venue','Venue') }}
         {{ Former::text('address','Address') }}

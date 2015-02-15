@@ -79,8 +79,8 @@
                 <i class="toggle-accordion"></i>
               </a>
             <ul class="dropdown-menu">
-                <li><a href="{{ URL::to('report/siteaccess') }}" class="submenu {{ sa('report/siteaccess') }}" ><i class="fa fa-globe"></i> Site Access</a></li>
-                <li><a href="{{ URL::to('report/activity') }}" class="submenu {{ sa('report/activity') }}" ><i class="fa fa-refresh"></i> Activity</a></li>
+                <li><a href="{{ URL::to('access') }}" class="submenu {{ sa('access') }}" ><i class="fa fa-globe"></i> Site Access</a></li>
+                <li><a href="{{ URL::to('activity') }}" class="submenu {{ sa('activity') }}" ><i class="fa fa-refresh"></i> Activity</a></li>
             </ul>
         </li>
         <li>

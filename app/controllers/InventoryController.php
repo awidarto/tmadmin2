@@ -51,6 +51,8 @@ class InventoryController extends AdminController {
 
         $this->place_action ='none';
 
+        $this->can_add = false;
+
         return parent::getIndex();
 
     }
