@@ -44,9 +44,11 @@ class StockchecklistController extends AdminController {
         //print $this->model->where('docFormat','picture')->get()->toJSON();
 
 
-        $this->is_additional_action = true;
+        //$this->is_additional_action = true;
 
-        $this->additional_action = View::make('stockcheck.scanbox')->render();
+        //$this->additional_action = View::make('stockcheck.scanbox')->render();
+
+        $this->can_add = false;
 
         $this->title = 'Stock Check Log';
 
