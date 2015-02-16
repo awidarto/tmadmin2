@@ -21,6 +21,21 @@
   </div>
 </div>
 
+<div id="changestatus-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Change Status</span></h3>
+  </div>
+  <div class="modal-body" >
+        <h4 id="upload-title-id"></h4>
+        {{ Former::select('assigned', 'Outlet')->options(Prefs::getOutlet()->OutletToSelection('name','name',true))->id('assigned-category')}}
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+    <button class="btn btn-primary" id="do-change-status">Save</button>
+  </div>
+</div>
+
 <div id="print-modal" class="modal fade large" tabindex="-1" role="dialog" aria-labelledby="myPrintModalLabel" aria-hidden="true">
     <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -54,7 +69,8 @@
     </div>
     <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-    <button class="btn btn-primary" id="do-print">Print</button>
+    <button class="btn btn-primary" id="do-change-status">Change Status</button>
+    <button class="btn btn-primary" id="do-sales-print">Print</button>
     </div>
 </div>
 
@@ -75,11 +91,11 @@
 <script type="text/javascript">
     $(document).ready(function(){
         $('#refresh_filter').on('click',function(){
-            oTable.fnDraw();
+            oTable.draw();
         });
 
-        $('#outlet_filter').on('change',function(){
-            oTable.fnDraw();
+        $('#outlet-filter').on('change',function(){
+            oTable.draw();
         });
 
         $('#move_outlets').on('click',function(e){
@@ -153,9 +169,9 @@
 
         });
 
-        $('#do-print').click(function(){
-
-            var pframe = document.getElementById('label_frame');
+        $('#do-sales-print').click(function(){
+            console.log('print');
+            var pframe = document.getElementById('detail_frame');
             var pframeWindow = pframe.contentWindow;
             pframeWindow.print();
 
