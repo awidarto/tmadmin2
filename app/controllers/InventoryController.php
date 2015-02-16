@@ -108,15 +108,23 @@ class InventoryController extends AdminController {
         $skus = array();
         foreach($labels as $l){
             $skus[] = $l['SKU'];
+            $outletids[] = new MongoId($l['outletId']);
         }
 
         $skus = array_unique($skus);
 
         $products = Product::whereIn('SKU',$skus)->get()->toArray();
 
+        $outlets = Outlet::whereIn('_id',$outletids)->get()->toArray();
+
         $plist = array();
         foreach($products as $product){
             $plist[$product['SKU']] = $product;
+        }
+
+        $olist = array();
+        foreach($outlets as $out){
+            $olist[$out['_id']] = $out;
         }
 
         return View::make('inventory.printlabel')
@@ -131,6 +139,7 @@ class InventoryController extends AdminController {
             ->with('left_offset', $left_offset)
             ->with('top_offset', $top_offset)
             ->with('products',$plist)
+            ->with('outlets',$olist)
             ->with('labels', $labels);
     }
 
