@@ -166,6 +166,8 @@ class ProductsController extends AdminController {
         $cats = Prefs::getProductCategory()->ProductCatToSelection('slug', 'title', false);
         $data['category'] = $cats[$data['categoryLink']];
 
+        $data['colorVariantArray'] = $this->split2array($data['colorVariant']);
+
         return $data;
     }
 
@@ -258,6 +260,7 @@ class ProductsController extends AdminController {
         $cats = Prefs::getProductCategory()->ProductCatToSelection('slug', 'title', false);
         $data['category'] = $cats[$data['categoryLink']];
 
+        $data['colorVariantArray'] = $this->split2array($data['colorVariant']);
 
         $unitdata = array_merge(array('id'=>$id),$data);
 
@@ -427,6 +430,21 @@ class ProductsController extends AdminController {
 
         $actions = $edit.'<br />'.$upload.'<br />'.$inv.'<br />'.$delete;
         return $actions;
+    }
+
+    public function split2array($skus){
+        $tags = explode(',',$skus);
+        if(is_array($tags) && count($tags) > 0 && $skus != ''){
+            $ts = array();
+            foreach($tags as $t){
+                $ts[] = $t;
+            }
+
+            return $ts;
+        }else{
+            return array($sku);
+        }
+
     }
 
     public function extractCategory()
