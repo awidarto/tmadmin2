@@ -433,16 +433,19 @@ class ProductsController extends AdminController {
     }
 
     public function split2array($skus){
-        $tags = explode(',',$skus);
-        if(is_array($tags) && count($tags) > 0 && $skus != ''){
-            $ts = array();
-            foreach($tags as $t){
-                $ts[] = $t;
+        if($skus != ''){
+            $tags = explode(',',$skus);
+            if(is_array($tags) && count($tags) > 0 && $skus != ''){
+                $ts = array();
+                foreach($tags as $t){
+                    $ts[] = $t;
+                }
+
+                return $ts;
+            }else{
+                return array($skus);
             }
 
-            return $ts;
-        }else if($sku != ''){
-            return array($sku);
         }else{
             return array();
         }
