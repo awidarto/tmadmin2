@@ -12,41 +12,37 @@
 
         {{ Former::text('SKU','SKU') }}
         {{ Former::select('status')->options(array('inactive'=>'Inactive','active'=>'Active'))->label('Status') }}
-
+        {{-- Former::select('category','Category')->options(Prefs::ExtractProductCategory()) --}}
         {{ Former::select('categoryLink','Category')->options(Prefs::getProductCategory()->productCatToSelection('slug', 'title' )) }}
         {{ Former::text('subCategory','Sub Category') }}
 
-        {{-- Former::select('categoryLink','Category')->options(Prefs::ExtractProductCategory()) --}}
         {{ Former::text('series','Series') }}
         {{ Former::text('itemDescription','Description') }}
-        {{-- Former::text('itemGroup','Item Group')->help('for compound product only') --}}
-        {{ Former::text('priceRegular','Regular Price')->class('col-md-4') }}
-        {{ Former::text('priceDiscount','Discount Price')->class('col-md-4') }}
-        {{ Former::text('discFromDate','Disc. From')->class('span7 offset-2 eventdate')
+        {{ Former::text('itemGroup','Item Group')->help('for compound product only') }}
+        {{ Former::text('priceRegular','Regular Price')->class('form-control col-md-4') }}
+        {{ Former::text('priceDiscount','Discount Price')->class('form-control col-md-4') }}
+
+        {{ Former::text('discFromDate','Disc. From')->class('form-control eventdate')
             ->id('fromDate')
             //->data_format('dd-mm-yyyy')
             ->append('<i class="fa fa-th"></i>') }}
 
-        {{ Former::text('discToDate','Disc. Until')->class('span7 offset-2 eventdate')
+        {{ Former::text('discToDate','Disc. Until')->class('form-control eventdate')
             ->id('toDate')
-            //->data_format('dd-mm-yyyy')
             ->append('<i class="fa fa-th"></i>') }}
 
-        {{ Former::text('material','Material') }}
-        {{ Former::text('colour','Colour')->class('col-md-4') }}
-
-        <div class="row-fluid form-vertical">
+        <div class="row form-vertical">
             <div class="col-md-4">
-                {{ Former::text('W','Width')->class('form-control ')}}
+                {{ Former::text('W','Width')->class('form-control')}}
             </div>
             <div class="col-md-4">
-                {{ Former::text('H','Height')->class('form-control ') }}
+                {{ Former::text('H','Height')->class('form-control') }}
             </div>
             <div class="col-md-4">
-                {{ Former::text('L','Length')->class('form-control ') }}
+                {{ Former::text('L','Length')->class('form-control') }}
             </div>
         </div>
-        <div class="row-fluid form-vertical">
+        <div class="row">
             <div class="col-md-4">
                 {{ Former::text('Weight','Weight/Unit')->class('form-control')}}
             </div>
@@ -57,6 +53,21 @@
                 {{ Former::text('sizeDescription','Dimension Description') }}
             </div>
         </div>
+
+
+        <div class="row form-vertical">
+            <div class="col-md-4">
+                {{ Former::text('material','Material') }}
+            </div>
+            <div class="col-md-4">
+                {{ Former::text('colour','Colour')->class('form-control') }}
+            </div>
+            <div class="col-md-4">
+                {{ Former::select('colorVariantParent','Show as Main Color Item')->options(array('yes'=>'Yes','no'=>'No')) }}
+            </div>
+        </div>
+
+        {{ Former::text('colorVariant','Color Variant')->class('tag_color') }}
 
         {{ Former::text('tags','Tags')->class('tag_keyword') }}
 

@@ -30,22 +30,7 @@
 
         {{ Former::text('discToDate','Disc. Until')->class('form-control eventdate')
             ->id('toDate')
-            //->data_format('dd-mm-yyyy')
             ->append('<i class="fa fa-th"></i>') }}
-
-        {{ Former::text('material','Material') }}
-        {{ Former::text('colour','Colour')->class('form-control col-md-4') }}
-        {{--
-
-        <div class="row form-vertical">
-            <div class="col-md-4">
-                {{ Former::text('colour','Colour')->class('form-control col-md-12') }}
-            </div>
-            <div class="col-md-4">
-                {{ Former::text('colourHex','')->class('form-control pick-a-color') }}
-            </div>
-        </div>
-        --}}
 
         <div class="row form-vertical">
             <div class="col-md-4">
@@ -69,6 +54,21 @@
                 {{ Former::text('sizeDescription','Dimension Description') }}
             </div>
         </div>
+
+
+        <div class="row form-vertical">
+            <div class="col-md-4">
+                {{ Former::text('material','Material') }}
+            </div>
+            <div class="col-md-4">
+                {{ Former::text('colour','Colour')->class('form-control') }}
+            </div>
+            <div class="col-md-4">
+                {{ Former::select('colorVariantParent','Show as Main Color Item')->options(array('yes'=>'Yes','no'=>'No')) }}
+            </div>
+        </div>
+
+        {{ Former::text('colorVariant','Color Variant')->class('tag_color') }}
 
         {{ Former::text('tags','Tags')->class('tag_keyword') }}
 

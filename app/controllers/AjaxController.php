@@ -840,6 +840,38 @@ class AjaxController extends BaseController {
         }
     }
 
+    public function getColor()
+    {
+        $q = Input::get('term');
+
+        $mreg = new MongoRegex('/'.$q.'/i');
+
+        $res = Product::where('SKU', 'regex', $mreg)
+                    ->orWhere('itemDescription', 'regex', $mreg)
+                    ->orWhere('series', 'regex', $mreg)
+                    ->get()->toArray();
+
+                    //print_r($res);
+
+        $result = array();
+
+        foreach($res as $r){
+            //print_r($r);
+
+            if(isset($r['defaultpictures']['thumbnail_url'])){
+                $display = HTML::image( $r['defaultpictures']['thumbnail_url'].'?'.time(),'thumb', array('id' => $r['_id']));
+            }else{
+                $display = HTML::image( URL::to('images/no-thumb.jpg').'?'.time(),'thumb', array('id' => $r['_id']));
+            }
+
+            $label = $display.' '.$r['SKU'].'-'.$r['itemDescription'];
+            $result[] = array('id'=>$r['_id'],'value'=>$r['SKU'],'link'=>$r['SKU'],'pic'=>$display,'description'=>$r['itemDescription'].' - '.$r['colour'],'label'=>$label);
+        }
+
+        return Response::json($result);
+    }
+
+
     public function getTag()
     {
         $q = Input::get('term');
