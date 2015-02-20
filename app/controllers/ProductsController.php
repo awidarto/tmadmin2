@@ -441,8 +441,10 @@ class ProductsController extends AdminController {
             }
 
             return $ts;
-        }else{
+        }else if($sku != ''){
             return array($sku);
+        }else{
+            return array();
         }
 
     }
