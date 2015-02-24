@@ -112,7 +112,7 @@ class UploadController extends Controller {
             }
 
             $full = Image::make($destinationPath.'/'.$filename)
-                ->insert($large_wm, 'bottom-right',15,15)
+                //->insert($large_wm, 'bottom-right',15,15)
                 ->save($destinationPath.'/full_'.$filename);
 
             $image_size_array = array(

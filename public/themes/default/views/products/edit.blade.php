@@ -44,14 +44,17 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4">
-                {{ Former::text('Weight','Weight/Unit')->class('form-control')}}
+            <div class="col-md-3">
+                {{ Former::text('Weight','Shipment Weight')->class('form-control')}}
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
+                {{ Former::text('ShipmentQty','Shipment Qty')->class('form-control')}}
+            </div>
+            <div class="col-md-3">
                 {{ Former::text('D','Diameter')->class('form-control')}}
             </div>
-            <div class="col-md-4">
-                {{ Former::text('sizeDescription','Dimension Description') }}
+            <div class="col-md-3">
+                {{ Former::text('sizeDescription','Dim. Description') }}
             </div>
         </div>
 

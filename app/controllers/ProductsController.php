@@ -320,7 +320,7 @@ class ProductsController extends AdminController {
     {
 
         $this->validator = array(
-            'SKU' => 'required',
+            'SKU' => 'required|unique:products',
             'categoryLink' => 'required',
             'itemDescription' => 'required',
             'priceRegular' => 'required',
