@@ -111,6 +111,36 @@ class AjaxController extends BaseController {
         return Response::json($tree);
     }
 
+    public function postVariant()
+    {
+        $in = Input::get();
+
+        $parent = $in['parent'];
+        $skus = $in['product_skus'];
+        $variant_type = $in['variant_type'];
+
+        $products = Product::whereIn('SKU',$skus)->get();
+
+        foreach($products as $p){
+            if($variant_type == 'color'){
+                if($p->SKU == $parent){
+                    $p->colorVariantParent = 'yes';
+                }else{
+                    $p->colorVariantParent = 'no';
+                }
+
+                $p->colorVariant = implode(',', $skus);
+
+                $p->colorVariantArray = $skus;
+
+                $p->save();
+            }
+        }
+
+        return Response::json(array('result'=>'OK'));
+
+    }
+
     public function postScan()
     {
         $in = Input::get();

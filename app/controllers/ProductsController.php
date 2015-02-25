@@ -71,7 +71,7 @@ class ProductsController extends AdminController {
 
         $this->fields = array(
             //array('SKU',array('kind'=>'text','query'=>'like','pos'=>'both','callback'=>'namePic','show'=>true)),
-            array('SKU',array('kind'=>'text','query'=>'like','pos'=>'both','attr'=>array('class'=>'expander'),'show'=>true)),
+            array('SKU',array('kind'=>'text','query'=>'like','pos'=>'both','callback'=>'skuData','attr'=>array('class'=>'variant'),'show'=>true)),
             //array('SKU',array('kind'=>'text','callback'=>'dispBar', 'query'=>'like','pos'=>'both','show'=>true)),
             array('SKU',array('kind'=>'picture', 'callback'=>'namePic', 'query'=>'like','pos'=>'both','show'=>true)),
             array('itemDescription',array('kind'=>'text','query'=>'like','pos'=>'both','attr'=>array('class'=>'expander'),'show'=>true)),
@@ -491,6 +491,11 @@ class ProductsController extends AdminController {
         }else{
             return $data['docShare'];
         }
+    }
+
+    public function skuData($data)
+    {
+        return $data['SKU'].'<input type="hidden" class="sku-select" id="sku_'.$data['_id'].'" value="'.$data['SKU'].'" />';
     }
 
     public function namePic($data)

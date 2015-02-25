@@ -4,6 +4,7 @@
 }}&nbsp;&nbsp;<br />
 <a class="btn btn-info btn-sm" id="refresh_filter">Refresh</a>
 <a class="btn btn-info btn-sm" id="assign-product">Assign Product to Category</a>
+<a class="btn btn-info btn-sm" id="assign-variant">Set Variant Group</a>
 <a class="btn btn-info btn-sm" id="assign-status">Set Status</a>
 
 <div id="assign-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -36,7 +37,37 @@
   </div>
 </div>
 
+<div id="variant-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalStatus" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalVariant">Set Variant Group</span></h3>
+  </div>
+  <div class="modal-body" >
+        {{ Former::select('vartype', 'Variant Type')->options(array('color'=>'Color','size'=>'Size'))->id('variant-type')}}
+        <h4>Items</h4><p>use radio button to set parent item</p>
+        <div id="var-box">
 
+        </div>
+
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+    <button class="btn btn-primary" id="do-variant">Set</button>
+  </div>
+</div>
+<style type="text/css">
+    input.var-sel{
+        margin-right: 10px;
+    }
+
+    ul.h-list{
+        list-style-type: none;
+    }
+    ul.h-list li{
+        padding: 4px;
+    }
+
+</style>
 <script type="text/javascript">
     $(document).ready(function(){
         $('#refresh_filter').on('click',function(){
@@ -55,6 +86,68 @@
         $('#assign-status').on('click',function(e){
             $('#status-modal').modal();
             e.preventDefault();
+        });
+
+        $('#assign-variant').on('click',function(e){
+            var props = $('.selector:checked');
+            var ids = [];
+            var skus = [];
+            $.each(props, function(index){
+                var id = $(this).val();
+                ids.push( $(this).val() );
+                skus.push( $('input.sku-select#sku_' + id ).val() );
+            });
+            console.log(skus);
+
+            $('#var-box').html('');
+
+            var hlist = $('#var-box').append('<ul class="h-list"></ul>').find('ul');
+
+            for(i = 0;i < skus.length;i++){
+                var checked = (i == 0)?'checked':'';
+                hlist.append( '<li>' +
+                    '<input type="hidden" class="var-sku" value="'+ skus[i] +'" />' +
+                    '<input type="radio" name="varsel" ' + checked + ' class="var-sel" value="' + skus[i] + '" /> ' + skus[i] + '</li>');
+            }
+
+            console.log(hlist);
+
+            $('#variant-modal').modal();
+
+            e.preventDefault();
+        });
+
+        $('#do-variant').on('click',function(){
+            var props = $('.var-sku');
+            var skus = [];
+            $.each(props, function(index){
+                skus.push( $(this).val() );
+            });
+
+            var vparent = $('.var-sel:checked').val();
+            var vartype = $('#variant-type').val();
+
+            console.log(vparent);
+            console.log(skus);
+
+            if(skus.length > 0){
+                $.post('{{ URL::to('ajax/variant')}}',
+                    {
+                        variant_type : vartype,
+                        product_skus : skus,
+                        parent : vparent
+                    },
+                    function(data){
+                        $('#variant-modal').modal('hide');
+                        oTable.draw();
+                    }
+                    ,'json');
+
+            }else{
+                alert('No product selected.');
+                $('#variant-modal').modal('hide');
+            }
+
         });
 
         $('#do-assign').on('click',function(){
