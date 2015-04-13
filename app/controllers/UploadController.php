@@ -91,6 +91,26 @@ class UploadController extends Controller {
 
             }
 
+            if($ps['medium_portrait']['width'] == $ps['medium_portrait']['height']){
+
+                $sqcanvas = Image::canvas(($ps['medium_portrait']['width'] + 10) ,($ps['medium_portrait']['height'] + 10) , '#FFFFFF');
+
+
+                $medsrc = Image::make($destinationPath.'/'.$filename)
+                    ->resize($ps['medium_portrait']['width'],$ps['medium_portrait']['height'], function ($constraint) {
+                        $constraint->aspectRatio();
+                    });
+
+                $medium_portrait = $sqcanvas->insert($medsrc, 'center')
+                    ->save($destinationPath.'/med_port_'.$filename);
+
+            }else{
+                $medium_portrait = Image::make($destinationPath.'/'.$filename)
+                    ->fit($ps['medium_portrait']['width'],$ps['medium_portrait']['height'])
+                    ->save($destinationPath.'/med_port_'.$filename);
+
+            }
+
             if($ps['large']['width'] == $ps['large']['height']){
 
                 $sqcanvas = Image::canvas(($ps['large']['width'] + 10) ,($ps['large']['height'] + 10) , '#FFFFFF');
@@ -119,6 +139,7 @@ class UploadController extends Controller {
                 'thumbnail_url'=> URL::to('storage/media/'.$rstring.'/'.$ps['thumbnail']['prefix'].$filename),
                 'large_url'=> URL::to('storage/media/'.$rstring.'/'.$ps['large']['prefix'].$filename),
                 'medium_url'=> URL::to('storage/media/'.$rstring.'/'.$ps['medium']['prefix'].$filename),
+                'medium_portrait_url'=> URL::to('storage/media/'.$rstring.'/'.$ps['medium_portrait']['prefix'].$filename),
                 'full_url'=> URL::to('storage/media/'.$rstring.'/'.$ps['full']['prefix'].$filename),
             );
 
